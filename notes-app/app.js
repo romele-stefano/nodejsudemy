@@ -1,12 +1,48 @@
 import chalk from 'chalk'
+import yargs from 'yargs'
+import { hideBin } from 'yargs/helpers'
 import { getNotes } from './notes.js'
 
-// take argument passed after node app.js
-// by default argv return two standard paths 
-const command = process.argv[2]
+const y = yargs()
+y.version('1.1.1')
 
-if (command === 'add'){
-    console.log(chalk.green('Adding note!'))
-} else if (command === 'remove'){
-    console.log(chalk.red('Removing note!'))
-}
+// create add command
+y.command({
+    command: 'add',
+    describe: 'Add a new note',
+    handler: function() {
+        console.log(chalk.green.bold('Adding a new note!'))
+    }
+})
+
+// create remove command
+y.command({
+    command: 'remove',
+    describe: 'Remove a note',
+    handler: function() {
+        console.log(chalk.red.italic('Removing note...'))
+    }
+})
+
+// create list command
+y.command({
+    command: 'list',
+    describe: 'Listing out all notes',
+    handler: function(){
+        console.log(chalk.blue('Getting all notes...'))
+    }
+})
+
+// create read command
+y.command({
+    command: 'read',
+    describe: 'Read a note',
+    handler: function(){
+        console.log(chalk.bgBlue.yellow('Reading note!'))
+    }
+})
+
+// parse command given by user
+y.parse(process.argv.slice(2))
+
+console.log(yargs(hideBin(process.argv)).argv)
