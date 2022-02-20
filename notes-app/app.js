@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
-import { getNotes } from './notes.js'
+import { getNotes, addNote } from './notes.js'
 
 // in command line we can use --help to list all commands and options for yargs
 // node app.js --help
@@ -28,8 +28,7 @@ y.command({
         }
     },
     handler: function(argv) {
-        console.log('Title: ' + chalk.green.bold(argv.title))
-        console.log('Body: ' + chalk.blue.italic(argv.body))
+        addNote(argv.title, argv.body)
     }
 })
 
