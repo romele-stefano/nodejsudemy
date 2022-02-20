@@ -26,10 +26,7 @@ export function saveNotes(notes){
 export function addNote(title, body){
     const notes = loadNotes()
     // check if note title already exists
-    const duplicateNotes = notes.filter(function(note){
-        // return true if title already exist
-        return note.title === title
-    })
+    const duplicateNotes = notes.filter((note) => note.title === title)
     // if no duplicate exist
     if (duplicateNotes.length === 0){
         notes.push({
@@ -44,9 +41,7 @@ export function addNote(title, body){
 
 export function removeNote(title){
     const notes = loadNotes()
-    const notesToKeep = notes.filter(function(note){
-        return note.title !== title
-    })
+    const notesToKeep = notes.filter((note) => note.title !== title)
     // check if the note was removed
     if (notes.length > notesToKeep.length){
         console.log(chalk.bgGreen('Note removed!'))

@@ -27,7 +27,9 @@ y.command({
             type: 'string'
         }
     },
-    handler: function(argv) {
+    // short version of
+    // handler: function(argv){ ... }
+    handler(argv) {
         addNote(argv.title, argv.body)
     }
 })
@@ -43,7 +45,7 @@ y.command({
             type: 'string'
         }
     },
-    handler: function(argv) {
+    handler(argv) {
         removeNote(argv.title)
     }
 })
@@ -52,7 +54,7 @@ y.command({
 y.command({
     command: 'list',
     describe: 'Listing out all notes',
-    handler: function(){
+    handler(){
         console.log(chalk.blue('Getting all notes...'))
     }
 })
@@ -61,7 +63,7 @@ y.command({
 y.command({
     command: 'read',
     describe: 'Read a note',
-    handler: function(){
+    handler(){
         console.log(chalk.bgBlue.yellow('Reading note!'))
     }
 })
