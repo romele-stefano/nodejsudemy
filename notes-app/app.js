@@ -3,6 +3,9 @@ import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
 import { getNotes } from './notes.js'
 
+// in command line we can use --help to list all commands and options for yargs
+// node app.js --help
+
 const y = yargs()
 y.version('1.1.1')
 
@@ -10,8 +13,23 @@ y.version('1.1.1')
 y.command({
     command: 'add',
     describe: 'Add a new note',
-    handler: function() {
-        console.log(chalk.green.bold('Adding a new note!'))
+    // use to add all options the command can have
+    builder: {
+        title: {
+            describe: 'Note title',
+            // is field required
+            demandOption: true,
+            type: 'string'
+        },
+        body: {
+            describe: 'Note body',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv) {
+        console.log('Title: ' + chalk.green.bold(argv.title))
+        console.log('Body: ' + chalk.blue.italic(argv.body))
     }
 })
 
