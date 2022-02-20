@@ -40,5 +40,18 @@ export function addNote(title, body){
     } else {
        console.log(chalk.red('Note title taken!')) 
     }
-   
 }
+
+export function removeNote(title){
+    const notes = loadNotes()
+    const notesToKeep = notes.filter(function(note){
+        return note.title !== title
+    })
+    // check if the note was removed
+    if (notes.length > notesToKeep.length){
+        console.log(chalk.bgGreen('Note removed!'))
+        saveNotes(notesToKeep)
+    } else {
+        console.log(chalk.bgRed('Note not found!'))
+    }   
+}  

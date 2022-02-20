@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
-import { getNotes, addNote } from './notes.js'
+import { getNotes, addNote, removeNote } from './notes.js'
 
 // in command line we can use --help to list all commands and options for yargs
 // node app.js --help
@@ -36,8 +36,15 @@ y.command({
 y.command({
     command: 'remove',
     describe: 'Remove a note',
-    handler: function() {
-        console.log(chalk.red.italic('Removing note...'))
+    builder: {
+        title: {
+            describe: 'Note title',
+            demandOption: true,
+            type: 'string'
+        }
+    },
+    handler: function(argv) {
+        removeNote(argv.title)
     }
 })
 
