@@ -21,6 +21,18 @@ export function loadNotes(){
     
 }
 
+export function readNote(title){
+    const notes = loadNotes()
+    const note = notes.find((note) => note.title === title)
+
+    if(!note){
+        console.log(chalk.bgRed('Note does not exist'))
+    } else {
+        console.log(chalk.green(note.title))
+        console.log(note.body)
+    }
+}
+
 export function saveNotes(notes){
     // check /playground/1-json.mjs for notes
     const dataJSON = JSON.stringify(notes)
@@ -29,10 +41,11 @@ export function saveNotes(notes){
 
 export function addNote(title, body){
     const notes = loadNotes()
-    // check if note title already exists
-    const duplicateNotes = notes.filter((note) => note.title === title)
+    // instead of filter we can use 'find' because find stops the process if a duplicate
+    // is found, filter loop through all elements even if a duplicate is already found
+    const duplicateNote = notes.find((note) => note.title === title)
     // if no duplicate exist
-    if (duplicateNotes.length === 0){
+    if (!duplicateNote){
         notes.push({
             title: title,
             body: body
