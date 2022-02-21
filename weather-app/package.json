@@ -1,0 +1,16 @@
+{
+  "dependencies": {
+    "postman-request": "^2.88.1-postman.31"
+  },
+  "name": "y",
+  "version": "1.0.0",
+  "main": "app.js",
+  "type": "module",
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "description": ""
+}
