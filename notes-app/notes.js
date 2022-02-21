@@ -2,7 +2,7 @@ import chalk from 'chalk'
 import fs from 'fs'
 import { argv } from 'process'
 
-export function getNotes(){
+export function listNotes(){
     console.log(chalk.green.italic('Your notes'))
     const notes = loadNotes()
     notes.forEach((note) => {
@@ -44,6 +44,8 @@ export function addNote(title, body){
     // instead of filter we can use 'find' because find stops the process if a duplicate
     // is found, filter loop through all elements even if a duplicate is already found
     const duplicateNote = notes.find((note) => note.title === title)
+
+    debugger
     // if no duplicate exist
     if (!duplicateNote){
         notes.push({

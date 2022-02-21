@@ -1,7 +1,7 @@
 import chalk from 'chalk'
 import yargs from 'yargs'
 import { hideBin } from 'yargs/helpers'
-import { getNotes, addNote, removeNote, readNote } from './notes.js'
+import { listNotes, addNote, removeNote, readNote } from './notes.js'
 
 // in command line we can use --help to list all commands and options for yargs
 // node app.js --help
@@ -55,7 +55,7 @@ y.command({
     command: 'list',
     describe: 'Listing out all notes',
     handler(){
-        getNotes()
+        listNotes()
     }
 })
 
