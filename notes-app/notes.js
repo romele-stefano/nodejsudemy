@@ -3,7 +3,11 @@ import fs from 'fs'
 import { argv } from 'process'
 
 export function getNotes(){
-    return 'Your notes...'
+    console.log(chalk.green.italic('Your notes'))
+    const notes = loadNotes()
+    notes.forEach((note) => {
+        console.log(note.title)
+    })
 }
 
 export function loadNotes(){

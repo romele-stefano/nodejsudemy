@@ -55,7 +55,7 @@ y.command({
     command: 'list',
     describe: 'Listing out all notes',
     handler(){
-        console.log(chalk.blue('Getting all notes...'))
+        getNotes()
     }
 })
 
