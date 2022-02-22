@@ -6,18 +6,19 @@ const address = process.argv[2]
 if (!address) {
   console.log('Please, provide an address')
 } else {
-  geocode(address, (error, data) => {
+  // = {} provides a default in case of an error (so the callback will be given the 2 arguments)
+  geocode(address, (error, { latitude, longitude, location } = {}) => {
     if (error){
       // stop execution of below code if error is present
       return console.log(error)
     } 
   
-    forecast(data.latitude, data.longitude, (error, forecastData) => {
+    forecast(latitude, longitude, (error, forecastData) => {
       if (error){
         return console.log(error)
       }
   
-      console.log(data.location)
+      console.log(location)
       console.log(forecastData)
     })
   })
