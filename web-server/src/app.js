@@ -13,7 +13,32 @@ const __dirname = dirname(__filename)
 const publicDirectory = path.join(__dirname, '../public')
 app.use(express.static(publicDirectory))
 
-// configure server behavior
+// set template engine
+app.set('view engine', 'hbs')
+
+// routes
+app.get('', (req, res) => {
+    // render template
+    res.render('index', {
+        // values will be available in index.hbs
+        title: 'Dynamic title',
+        name: 'Gandalf'
+    })
+})
+
+app.get('/about', (req, res) => {
+    res.render('about', {
+        title: 'About me',
+        name: 'Gandalf'
+    })
+})
+
+app.get('/help', (req, res) => {
+    res.render('help', {
+        helpText: 'Some text for helping user'
+    })
+})
+
 app.get('/weather', (req, res) => {
     res.send({
         forecast: 'It is snowing',
