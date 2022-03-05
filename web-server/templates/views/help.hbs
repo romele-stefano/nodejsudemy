@@ -6,8 +6,10 @@
     <link rel="stylesheet" href="./css/styles.css">
 </head>
 <body>
-    <h1>{{title}}</h1>
-    <img src="./img/robot.png">
-    <p>Created by {{name}}</p>
+    <!-- render partial template -->
+    {{>header}}
+    <p>{{helpText}}</p>
+
+    {{>footer}}
 </body>
 </html>
