@@ -57,6 +57,20 @@ app.get('/weather', (req, res) => {
     })
 })
 
+// * means match anything that is not define above
+app.get('/help/*', (req, res) => {
+    res.render('404', {
+        error: 'Help article not found'
+    })
+})
+
+// 404 page
+app.get('*', (req, res) => {
+    res.render('404', {
+        error: '404 - page not found'
+    })
+})
+
 
 // start the server
 // callback is optional
