@@ -2,14 +2,17 @@
 
 <html>
 <head>
+    <title>Help</title>
+    <link rel="icon" href="/img/home-icon.png"
     <!-- href is relative path -->
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="/css/styles.css">
 </head>
 <body>
-    <!-- render partial template -->
-    {{>header}}
-    <p>{{helpText}}</p>
-
+    <div class="main-content">
+        <!-- render partial template -->
+        {{>header}}
+        <p>{{helpText}}</p>
+    </div>
     {{>footer}}
 </body>
 </html>

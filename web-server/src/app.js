@@ -60,14 +60,18 @@ app.get('/weather', (req, res) => {
 // * means match anything that is not define above
 app.get('/help/*', (req, res) => {
     res.render('404', {
-        error: 'Help article not found'
+        error: 'Help article not found',
+        title: 'Article not found',
+        name: 'Gandalf'
     })
 })
 
 // 404 page
 app.get('*', (req, res) => {
     res.render('404', {
-        error: '404 - page not found'
+        error: '404 - page not found',
+        title: 'Page not found',
+        name: 'Gandalf'
     })
 })
 
