@@ -3,6 +3,8 @@ import express from 'express'
 import { fileURLToPath } from 'url'
 import path, { dirname } from 'path'
 import hbs from 'hbs'
+import { geocode} from '../utils/geocode.js'
+import { forecast } from '../utils/forecast.js'
 
 // store express application
 const app = express()
@@ -51,9 +53,39 @@ app.get('/help', (req, res) => {
 })
 
 app.get('/weather', (req, res) => {
+    if (!req.query.address) {
+        return res.send({
+            error: 'You must provide an address'
+        })
+    } else {
+        geocode(req.query.address, (error, { latitude, longitude, location } = {}) => {
+            if (error){
+              // stop execution of below code if error is present
+              return console.log(error)
+            }  
+            forecast(latitude, longitude, (error, forecastData) => {
+              if (error){
+                return console.log(error)
+              }
+              res.send({
+                  location: location,
+                  forecast: forecastData
+              })
+            })
+          })
+    }
+})
+
+app.get('/products', (req, res) => {
+    // search is the term in our query string
+    if (!req.query.search) {
+        return res.send({
+            error: 'You must provide a search term'
+        })
+    }
+
     res.send({
-        forecast: 'It is snowing',
-        location: 'New York City'
+        products: []
     })
 })
 
