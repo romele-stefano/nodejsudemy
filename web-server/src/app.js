@@ -8,6 +8,8 @@ import { forecast } from '../utils/forecast.js'
 
 // store express application
 const app = express()
+// extract Heroku port
+const port = process.env.PORT || 3000
 
 // customize server to use html from public folder
 // find path of current file
@@ -110,6 +112,6 @@ app.get('*', (req, res) => {
 
 // start the server
 // callback is optional
-app.listen(3000, () => {
-    console.log('Server started on port 3000')
+app.listen(port, () => {
+    console.log('Server started on port ', port)
 })
