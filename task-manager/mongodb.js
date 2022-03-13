@@ -15,7 +15,45 @@ MongoClient.connect(uri, { useNewUrlParser: true }, (error, client) => {
 
     const db = client.db(databaseName)
 
-    // fetch data
+    // DELETE
+
+    /* db.collection('users').deleteMany({ age: 33 }).then((result) => {
+        console.log(result)
+    }).catch((error) => {
+        console.log(error)
+    }) */
+
+    db.collection('tasks').deleteOne({ description: 'task 3' }).then((result) => {
+        console.log(result)
+    }).catch((error) => {
+        console.log(error)
+    })
+
+    // UPDATE
+
+    /* db.collection('users').updateOne({ _id: new ObjectId('622ccdf377493c2ae29ad332') }, {
+      $set: {
+          age: 1400
+      }  
+    }).then((result) => {
+        console.log(result)
+    }).catch((error) => {
+        console.log(error)
+    }) */
+
+    /* db.collection('tasks').updateMany({ completed: false }, {
+        $set: {
+            completed: true
+        }
+    }).then((result) => {
+        console.log(result.modifiedCount)
+    }).catch((error) => {
+        console.log(error)
+    }) */
+
+
+    // READ
+
     /* db.collection('users').findOne({ name: 'Gandalf' }, (error, user) => {
         if (error){
             return console.log('Unable to fetch data')
@@ -29,12 +67,13 @@ MongoClient.connect(uri, { useNewUrlParser: true }, (error, client) => {
         console.log(task)
     }) */
 
-    db.collection('tasks').find({ completed: false }).toArray((error, tasks) => {
+    /* db.collection('tasks').find({ completed: false }).toArray((error, tasks) => {
         console.log(tasks)
-    })
+    }) */
 
 
-    // add one user
+    // CREATE
+
     /* db.collection('users').insertOne({
         name: 'Gimli',
         age: 192
