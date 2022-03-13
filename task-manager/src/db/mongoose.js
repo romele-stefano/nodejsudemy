@@ -16,14 +16,37 @@ const User = mongoose.model('User', {
 })
 
 // create new user
-const user = new User({
+/* const user = new User({
     name: 'Stefano',
     age: 30
 })
 
-// save to DB
+// save user to DB
 user.save().then((result) => {
     console.log(user)
+}).catch((error) => {
+    console.log('Error: ', error)
+}) */
+
+// define task model
+const Task = mongoose.model('Task', {
+    description: {
+        type: String
+    },
+    completed: {
+        type: Boolean
+    }
+})
+
+// create new task
+const task = new Task({
+    description: 'Task 1',
+    completed: false
+})
+
+// save task to DB
+task.save().then((result) => {
+    console.log(result)
 }).catch((error) => {
     console.log('Error: ', error)
 })
