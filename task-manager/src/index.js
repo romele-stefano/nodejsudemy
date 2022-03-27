@@ -9,7 +9,8 @@ const port = process.env.PORT || 3000
 
 // parse json in object so we can use in our requests
 app.use(express.json())
-app.use(userRouter, taskRouter)
+app.use(userRouter)
+app.use(taskRouter)
 
 
 app.listen(port, () => {
