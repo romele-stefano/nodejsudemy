@@ -7,6 +7,16 @@ const app = express()
 // process.env.PORT for Heroku
 const port = process.env.PORT || 3000
 
+// add middleware (be sure is before other app.use)
+/* app.use((req, res, next) => {
+    if (req.method === 'GET'){
+        res.send('GET requests are disabled')
+    } else {
+        next()
+    }
+})
+ */
+
 // parse json in object so we can use in our requests
 app.use(express.json())
 app.use(userRouter)

@@ -1,5 +1,6 @@
 import express from 'express'
 import { User } from '../models/user.js'
+import { auth } from '../middleware/auth.js'
 export const userRouter = new express.Router()
 
 
@@ -26,13 +27,9 @@ userRouter.post('/users/login', async(req, res) => {
     }
 })
 
-userRouter.get('/users', async(req, res) => {
-    try {   
-        const users = await User.find({})
-        res.send(users)
-    } catch(err) {
-        res.status(500).send()
-    }
+// auth middleware
+userRouter.get('/users/me', auth, async(req, res) => {
+    res.send(req.user)
 })
 
 userRouter.get('/users/:id', async(req, res) => {
