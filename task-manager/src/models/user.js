@@ -63,6 +63,18 @@ userSchema.methods.generateAuthToken = async function(){
     return token
 }
 
+// return only some information to the user
+userSchema.methods.toJSON = function(){
+    const user = this
+    const userObject = user.toObject()
+
+    // delete info we do not want to return to user
+    delete userObject.password
+    delete userObject.tokens
+
+    return userObject
+}
+
 
 // set findByCredentials
 // use statics because we need to use function on the model
