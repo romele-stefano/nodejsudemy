@@ -13,7 +13,8 @@ export async function auth(req, res, next) {
             throw new Error()
         }
 
-        // store user in request
+        // store user and token in request
+        req.token = token
         req.user = user
         next()
     } catch(err){
