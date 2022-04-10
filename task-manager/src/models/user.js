@@ -49,6 +49,16 @@ const userSchema = new mongoose.Schema({
     }]
 })
 
+// setup a "virtual" property in order to relate two different models without changing
+// what is saved to User model
+userSchema.virtual('tasks', {
+    ref: 'Task',
+    localField: '_id',
+    // name of the field on the other collection to "connect" with
+    foreignField: 'owner'
+})
+
+
 // standard function because of "this"
 // use methods because we need to use function on our instance
 userSchema.methods.generateAuthToken = async function(){
