@@ -1,8 +1,7 @@
 import mongoose from 'mongoose'
 import validator from 'validator'
 
-// define task model
-export const Task = mongoose.model('Task', {
+const taskSchema = new mongoose.Schema({ 
     description: {
         type: String,
         required: true,
@@ -18,4 +17,9 @@ export const Task = mongoose.model('Task', {
         // reference to User model
         ref: 'User'
     }
+}, {
+    timestamps: true
 })
+
+// define user model
+export const Task = mongoose.model('Task', taskSchema)

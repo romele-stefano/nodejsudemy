@@ -48,6 +48,9 @@ const userSchema = new mongoose.Schema({
             required: true
         }
     }]
+}, {
+    // schema options
+    timestamps: true
 })
 
 // setup a "virtual" property in order to relate two different models without changing
