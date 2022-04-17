@@ -88,6 +88,7 @@ userSchema.methods.toJSON = function(){
     // delete info we do not want to return to user
     delete userObject.password
     delete userObject.tokens
+    delete userObject.avatar
 
     return userObject
 }
